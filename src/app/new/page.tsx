@@ -27,9 +27,6 @@ const MonacoEditor = dynamic(() => import('@monaco-editor/react'), {
   )
 });
 
-// @ts-expect-error - Monaco Editor is not SSR compatible
-let CodeEditor;
-
 interface Tab {
   id: string;
   label: string;
