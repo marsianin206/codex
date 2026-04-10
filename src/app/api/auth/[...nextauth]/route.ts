@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import GitHub from 'next-auth/providers/github';
 
-const handlers = NextAuth({
+export const { GET, POST } = NextAuth({
   providers: [
     GitHub({
       clientId: process.env.GITHUB_CLIENT_ID!,
@@ -17,5 +17,3 @@ const handlers = NextAuth({
     },
   },
 });
-
-export const { GET, POST } = handlers;
