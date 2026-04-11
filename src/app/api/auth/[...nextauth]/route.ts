@@ -1,14 +1,16 @@
-import NextAuth from "next-auth"
-import Github from "next-auth/providers/github"
+// Simple test handler that returns 200
+import { NextResponse } from 'next/server';
 
-const handler = NextAuth({
-  providers: [
-    Github({
-      clientId: process.env.GITHUB_CLIENT_ID || "",
-      clientSecret: process.env.GITHUB_CLIENT_SECRET || "",
-    }),
-  ],
-  secret: process.env.AUTH_SECRET,
-})
+export async function GET() {
+  return NextResponse.json({ 
+    message: 'Auth works!', 
+    timestamp: new Date().toISOString() 
+  });
+}
 
-export { handler as GET, handler as POST }
+export async function POST() {
+  return NextResponse.json({ 
+    message: 'Auth works!',
+    timestamp: new Date().toISOString() 
+  });
+}
