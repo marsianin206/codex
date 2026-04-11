@@ -1,19 +1,14 @@
-import NextAuth from "next-auth";
-import GitHubProvider from "next-auth/providers/github";
+import NextAuth from "next-auth"
+import Github from "next-auth/providers/github"
 
-export default NextAuth({
+const handler = NextAuth({
   providers: [
-    GitHubProvider({
-      clientId: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    Github({
+      clientId: process.env.GITHUB_CLIENT_ID || "",
+      clientSecret: process.env.GITHUB_CLIENT_SECRET || "",
     }),
   ],
-  callbacks: {
-    async session({ session, token }) {
-      if (session.user) {
-        session.user.id = token.sub as string;
-      }
-      return session;
-    },
-  },
-});
+  secret: process.env.AUTH_SECRET,
+})
+
+export { handler as GET, handler as POST }
